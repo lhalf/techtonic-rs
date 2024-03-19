@@ -1,7 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://be5sp3kippknb"]
+[gd_scene load_steps=3 format=3 uid="uid://be5sp3kippknb"]
 
-[ext_resource type="Texture2D" uid="uid://bh3mchh6s4hc3" path="res://icon.svg" id="1_1ahp4"]
+[ext_resource type="Texture2D" uid="uid://bh3mchh6s4hc3" path="res://icon.svg" id="1_sf27s"]
 
-[node name="Player" type="Player"]
-position = Vector2(532, 238.25)
-texture = ExtResource("1_1ahp4")
+[sub_resource type="SphereMesh" id="SphereMesh_gi26w"]
+
+[node name="World" type="Node3D"]
+
+[node name="Planet" type="Planet" parent="."]
+mesh = SubResource("SphereMesh_gi26w")
+
+[node name="Face" type="Sprite3D" parent="Planet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.526419)
+texture = ExtResource("1_sf27s")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.0125)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.916307, 0.400477, 0, -0.400477, 0.916307, 0, 1.66734, 3.06831)
