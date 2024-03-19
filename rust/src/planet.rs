@@ -6,6 +6,7 @@ use godot::prelude::{godot_api, GodotClass};
 #[derive(GodotClass)]
 #[class(base=MeshInstance3D,tool)]
 struct Planet {
+    #[export]
     angular_speed: f64,
     base: Base<MeshInstance3D>
 }
