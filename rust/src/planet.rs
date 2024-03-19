@@ -4,7 +4,7 @@ use godot::obj::{Base, WithBaseField};
 use godot::prelude::{godot_api, GodotClass};
 
 #[derive(GodotClass)]
-#[class(base=MeshInstance3D)]
+#[class(base=MeshInstance3D,tool)]
 struct Planet {
     angular_speed: f64,
     base: Base<MeshInstance3D>
@@ -21,7 +21,7 @@ impl IMeshInstance3D for Planet {
         }
     }
 
-    fn physics_process(&mut self, delta: f64) {
+    fn process(&mut self, delta: f64) {
         let radians = (self.angular_speed * delta) as f32;
         self.base_mut().rotate_y(radians);
     }
