@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://be5sp3kippknb"]
+[gd_scene load_steps=5 format=3 uid="uid://be5sp3kippknb"]
 
 [ext_resource type="Texture2D" uid="uid://bh3mchh6s4hc3" path="res://icon.svg" id="1_sf27s"]
+[ext_resource type="Script" path="res://sphere.gd" id="2_817ud"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_gi26w"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_4mnd0"]
 
 [node name="World" type="Node3D"]
 
 [node name="Planet" type="Planet" parent="."]
+transform = Transform3D(0.136611, 0, -0.988716, 0, 1, 0, 0.988716, 0, 0.136611, 0, 0, 0)
 mesh = SubResource("SphereMesh_gi26w")
 
 [node name="Face" type="Sprite3D" parent="Planet"]
@@ -14,7 +18,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.526419)
 texture = ExtResource("1_sf27s")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.0125)
+transform = Transform3D(0.710001, -0.423003, 0.562998, 0, 0.799486, 0.600685, -0.704201, -0.426487, 0.567636, 2.56562, 1.61506, 3.0125)
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.916307, 0.400477, 0, -0.400477, 0.916307, 0, 1.66734, 3.06831)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51279, 0, -1.01299)
+mesh = SubResource("SphereMesh_4mnd0")
+skeleton = NodePath("")
+script = ExtResource("2_817ud")
