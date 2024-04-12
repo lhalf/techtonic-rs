@@ -1,3 +1,4 @@
+pub mod godotmesh;
 pub mod planet;
 pub mod sphere;
 
