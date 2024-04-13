@@ -1,6 +1,7 @@
 extends Planet
 var m = MeshInstance3D.new()
 var mesh_texture = preload('res://texture.tres')
+var mesh_arrays: Array = []
 
 @export var change_mesh : bool = false
 
@@ -15,22 +16,20 @@ func _process(delta):
 
 
 func draw_mesh(vertices: PackedVector3Array):
-	var arrays = []
-	arrays.resize(Mesh.ARRAY_MAX)
-	arrays[Mesh.ARRAY_VERTEX] = vertices
+	mesh_arrays.resize(Mesh.ARRAY_MAX)
+	mesh_arrays[Mesh.ARRAY_VERTEX] = vertices
 	
-	arrays = fake_grid_arrays()
+	mesh_arrays = fake_grid_arrays()
 	# Create the Mesh.
 	var arr_mesh = ArrayMesh.new()
-	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_arrays)
 	m.mesh = arr_mesh
 	m.mesh.surface_set_material(0, mesh_texture)
 	
 	add_child(m)
 
 func fake_grid_arrays(width: int = 4, height: int = 2) -> Array:
-	var output: Array = []
-	output.resize(Mesh.ARRAY_MAX)
+	mesh_arrays.resize(Mesh.ARRAY_MAX)
 	var verticies = []
 	var UVs = []
 	
@@ -49,19 +48,18 @@ func fake_grid_arrays(width: int = 4, height: int = 2) -> Array:
 			verticies.append_array(triangle_1)
 			verticies.append_array(triangle_2)
 	
-	output[Mesh.ARRAY_VERTEX] = PackedVector3Array(verticies)
-	output[Mesh.ARRAY_TEX_UV] = PackedVector2Array(UVs)
-	return output
+	mesh_arrays[Mesh.ARRAY_VERTEX] = PackedVector3Array(verticies)
+	mesh_arrays[Mesh.ARRAY_TEX_UV] = PackedVector2Array(UVs)
+	return mesh_arrays
 
 func change_random_cell():
 	change_cell(randi_range(0,7), randi_range(0,10) / 10.0)
 
 func change_cell(cell_number: int, updated_cell_uv: float):
-	var new_arrays = m.mesh.surface_get_arrays(0)
 	for i in range(0,6):
-		new_arrays[Mesh.ARRAY_TEX_UV][cell_number * 6 + i] = Vector2(updated_cell_uv, 0)
+		mesh_arrays[Mesh.ARRAY_TEX_UV][cell_number * 6 + i] = Vector2(updated_cell_uv, 0)
 	
 	var arr_mesh = ArrayMesh.new()
-	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, new_arrays)
+	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_arrays)
 	m.mesh = arr_mesh
 	m.mesh.surface_set_material(0, mesh_texture)
