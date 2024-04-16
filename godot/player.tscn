@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://be5sp3kippknb"]
 
-[ext_resource type="Script" path="res://Planet2.gd" id="2_2ux0f"]
+[ext_resource type="Script" path="res://Planet.gd" id="2_2ux0f"]
 
 [node name="World" type="Node3D"]
 
@@ -10,6 +10,6 @@ transform = Transform3D(0.577929, -0.808729, 0.109341, 0.412431, 0.405051, 0.815
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.916307, 0.400477, 0, -0.400477, 0.916307, 0, 1.66734, 3.06831)
 
-[node name="Planet2" type="Planet" parent="."]
-transform = Transform3D(0.649002, 0, -0.750392, 0, 1, 0, 0.750392, 0, 0.649002, 0, 0, 0)
+[node name="Planet" type="Planet" parent="."]
 script = ExtResource("2_2ux0f")
+change_mesh = true

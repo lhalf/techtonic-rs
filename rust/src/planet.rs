@@ -12,19 +12,24 @@ impl IMeshInstance3D for Planet {
     fn init(base: Base<MeshInstance3D>) -> Self {
         Self { base }
     }
+
+    fn ready(&mut self) {
+        godot_print!("{:?}", self.base().get_mesh());
+    }
 }
 
 #[godot_api]
 impl Planet {
     #[func]
-    fn square(&self) -> PackedVector3Array {
-        let mut verticies = PackedVector3Array::new();
-        verticies.push(Vector3::new(1.0, 0.0, 1.0));
-        verticies.push(Vector3::new(1.0, 0.0, 0.0));
-        verticies.push(Vector3::new(0.0, 0.0, 1.0));
-        verticies.push(Vector3::new(1.0, 0.0, 0.0));
-        verticies.push(Vector3::new(0.0, 0.0, 1.0));
-        verticies.push(Vector3::new(0.0, 0.0, 0.0));
-        verticies
+    fn vertices(&self) -> PackedVector3Array {
+        let mut vertices = PackedVector3Array::new();
+        vertices.push(Vector3::new(0.0, 0.0, 0.0));
+        vertices.push(Vector3::new(1.0, 0.0, 0.0));
+        vertices.push(Vector3::new(0.0, 0.0, 1.0));
+        vertices.push(Vector3::new(1.0, 0.0, 0.0));
+        vertices.push(Vector3::new(1.0, 0.0, 1.0));
+        vertices.push(Vector3::new(0.0, 0.0, 1.0));
+        vertices
     }
 }
+

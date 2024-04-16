@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 const CUBE_SIDE_COUNT: usize = 6;
 
 struct Sphere {
