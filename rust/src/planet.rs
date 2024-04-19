@@ -21,16 +21,15 @@ impl IMeshInstance3D for Planet {
 #[godot_api]
 impl Planet {
     #[func]
-    fn vertices(&self) -> PackedVector3Array {
-        let length = 10;
+    fn vertices(&self, length: u64) -> PackedVector3Array {
         use Direction::*;
         let mut vertices = PackedVector3Array::new();
-        vertices.extend(generate_face(length, XPositive));
-        vertices.extend(generate_face(length, XNegative));
-        vertices.extend(generate_face(length, YPositive));
-        vertices.extend(generate_face(length, YNegative));
-        vertices.extend(generate_face(length, ZPositive));
-        vertices.extend(generate_face(length, ZNegative));
+        vertices.extend(generate_face(length as usize, XPositive));
+        vertices.extend(generate_face(length as usize, XNegative));
+        vertices.extend(generate_face(length as usize, YPositive));
+        vertices.extend(generate_face(length as usize, YNegative));
+        vertices.extend(generate_face(length as usize, ZPositive));
+        vertices.extend(generate_face(length as usize, ZNegative));
         vertices
     }
 }

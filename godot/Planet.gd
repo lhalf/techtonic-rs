@@ -3,9 +3,10 @@ extends Planet
 @onready var mesh_texture = preload('res://texture.tres')
 var mesh_arrays: Array = []
 @export var change_mesh : bool = false
+@export var side_length: int = 10
 
 func _enter_tree():
-	draw_mesh(vertices(), Vector2(randi_range(0,10) / 10.0, 0))
+	draw_mesh(vertices(side_length))
 
 func _process(_delta):
 	if change_mesh == true:
@@ -13,12 +14,15 @@ func _process(_delta):
 		change_random_cell()
 
 
-func draw_mesh(vertices: PackedVector3Array, colour: Vector2):
+func draw_mesh(vertices: PackedVector3Array):
 	mesh_arrays.resize(Mesh.ARRAY_MAX) # setting unused stuff to zero
 	mesh_arrays[Mesh.ARRAY_VERTEX] = vertices
 	var UVs = []
 	UVs.resize(vertices.size())
-	UVs.fill(colour)
+	for cell in (UVs.size()/6):
+		var colour = Vector2(randf(), 0)
+		for vertex in 6:
+			UVs[cell*6 + vertex] = colour
 	mesh_arrays[Mesh.ARRAY_TEX_UV] = PackedVector2Array(UVs)
 
 	# Create the Mesh.

@@ -11,9 +11,10 @@ transform = Transform3D(1, 0, 0, 0, 0.916307, 0.400477, 0, -0.400477, 0.916307, 
 [node name="Planet" type="Planet" parent="."]
 script = ExtResource("2_2ux0f")
 change_mesh = true
+side_length = 100
 
 [node name="CameraController" type="Node3D" parent="."]
 script = ExtResource("2_fdoy0")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
-transform = Transform3D(-0.238059, 0.314327, 0.918981, 0.116091, 0.948609, -0.294387, -0.964288, 0.0366037, -0.262316, 10.7933, -5.69026, -4.56168)
+transform = Transform3D(0.961911, -0.0335244, 0.271301, -0.106644, 0.867794, 0.485346, -0.251704, -0.495792, 0.831165, 5.12349, 2.09244, 9.96613)
