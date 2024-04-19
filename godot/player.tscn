@@ -1,11 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://be5sp3kippknb"]
+[gd_scene load_steps=3 format=3 uid="uid://be5sp3kippknb"]
 
 [ext_resource type="Script" path="res://Planet.gd" id="2_2ux0f"]
+[ext_resource type="Script" path="res://CameraController.gd" id="2_fdoy0"]
 
 [node name="World" type="Node3D"]
-
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(0.577929, -0.808729, 0.109341, 0.412431, 0.405051, 0.815987, -0.704201, -0.426487, 0.567636, 2.56562, 6.32857, 4.17499)
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.916307, 0.400477, 0, -0.400477, 0.916307, 0, 1.66734, 3.06831)
@@ -13,3 +11,9 @@ transform = Transform3D(1, 0, 0, 0, 0.916307, 0.400477, 0, -0.400477, 0.916307, 
 [node name="Planet" type="Planet" parent="."]
 script = ExtResource("2_2ux0f")
 change_mesh = true
+
+[node name="CameraController" type="Node3D" parent="."]
+script = ExtResource("2_fdoy0")
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+transform = Transform3D(-0.238059, 0.314327, 0.918981, 0.116091, 0.948609, -0.294387, -0.964288, 0.0366037, -0.262316, 10.7933, -5.69026, -4.56168)

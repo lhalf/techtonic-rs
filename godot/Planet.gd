@@ -13,10 +13,12 @@ func _process(_delta):
 		change_random_cell()
 
 
-func draw_mesh(vertices_: PackedVector3Array, colour: Vector2):
+func draw_mesh(vertices: PackedVector3Array, colour: Vector2):
 	mesh_arrays.resize(Mesh.ARRAY_MAX) # setting unused stuff to zero
-	mesh_arrays[Mesh.ARRAY_VERTEX] = vertices_
-	var UVs = [colour, colour, colour, colour, colour, colour]
+	mesh_arrays[Mesh.ARRAY_VERTEX] = vertices
+	var UVs = []
+	UVs.resize(vertices.size())
+	UVs.fill(colour)
 	mesh_arrays[Mesh.ARRAY_TEX_UV] = PackedVector2Array(UVs)
 
 	# Create the Mesh.
