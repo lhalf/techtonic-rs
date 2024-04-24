@@ -14,11 +14,11 @@ func _process(_delta):
 		change_random_cell()
 
 
-func draw_mesh(vertices: PackedVector3Array):
+func draw_mesh(vertices_: PackedVector3Array):
 	mesh_arrays.resize(Mesh.ARRAY_MAX) # setting unused stuff to zero
-	mesh_arrays[Mesh.ARRAY_VERTEX] = vertices
+	mesh_arrays[Mesh.ARRAY_VERTEX] = vertices_
 	var UVs = []
-	UVs.resize(vertices.size())
+	UVs.resize(vertices_.size())
 	for cell in (UVs.size()/6):
 		var colour = Vector2(randf(), 0)
 		for vertex in 6:
