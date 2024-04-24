@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://l3fik33y4s3s"]
+
+[ext_resource type="Script" path="res://camera_controller.gd" id="1_153kh"]
+
+[node name="CameraController" type="Node3D" node_paths=PackedStringArray("vertical_rotation")]
+script = ExtResource("1_153kh")
+vertical_rotation = NodePath("VerticalRotatation")
+
+[node name="VerticalRotatation" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="VerticalRotatation"]
