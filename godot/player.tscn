@@ -11,7 +11,6 @@ transform = Transform3D(1, 0, 0, 0, 0.916307, 0.400477, 0, -0.400477, 0.916307, 
 [node name="Planet" type="Planet" parent="."]
 script = ExtResource("2_2ux0f")
 change_mesh = true
-side_length = 100
 
 [node name="CameraController" parent="." instance=ExtResource("2_73o6m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.06422)

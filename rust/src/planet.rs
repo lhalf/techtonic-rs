@@ -1,5 +1,8 @@
 use godot::engine::{IMeshInstance3D, MeshInstance3D};
 use godot::prelude::*;
+use rand::Rng;
+
+const CUBE_SIDE_COUNT: u64 = 6;
 
 #[derive(GodotClass)]
 #[class(base=MeshInstance3D,tool)]
@@ -31,6 +34,16 @@ impl Planet {
         vertices.extend(generate_face(length as usize, ZPositive));
         vertices.extend(generate_face(length as usize, ZNegative));
         vertices
+    }
+
+    #[func]
+    fn heights(&self, length: u64) -> PackedFloat32Array {
+        let cells = length * length * CUBE_SIDE_COUNT;
+        std::iter::from_fn(|| Some(rand::thread_rng().gen()))
+            .take(cells as usize)
+            .collect()
+        // let increment = 0.95 / (cells) as f32;
+        // (0..cells).map(|cell| cell as f32 * increment).collect()
     }
 }
 

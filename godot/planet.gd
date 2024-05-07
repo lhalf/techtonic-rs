@@ -6,7 +6,7 @@ var mesh_arrays: Array = []
 @export var side_length: int = 10
 
 func _enter_tree():
-	draw_mesh(vertices(side_length))
+	draw_mesh(vertices(side_length), heights(side_length))
 
 func _process(_delta):
 	if change_mesh == true:
@@ -14,13 +14,14 @@ func _process(_delta):
 		change_random_cell()
 
 
-func draw_mesh(vertices_: PackedVector3Array):
+func draw_mesh(vertices_: PackedVector3Array, heights: PackedFloat32Array):
 	mesh_arrays.resize(Mesh.ARRAY_MAX) # setting unused stuff to zero
 	mesh_arrays[Mesh.ARRAY_VERTEX] = vertices_
 	var UVs = []
 	UVs.resize(vertices_.size())
 	for cell in (UVs.size()/6):
-		var colour = Vector2(randf(), 0)
+		assert(heights[cell]>=0 and heights[cell]<=1)
+		var colour = Vector2(heights[cell], 0)
 		for vertex in 6:
 			UVs[cell*6 + vertex] = colour
 	mesh_arrays[Mesh.ARRAY_TEX_UV] = PackedVector2Array(UVs)
@@ -31,6 +32,8 @@ func draw_mesh(vertices_: PackedVector3Array):
 	
 	mesh = arr_mesh
 	mesh.surface_set_material(0, mesh_texture)
+
+
 
 func change_random_cell():
 	change_cell(0, randi_range(0,10) / 10.0)
